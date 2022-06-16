@@ -7,17 +7,12 @@ function TaskList({ tasks, current, update }) {
   let tasksCopy = [...list];
 
   useEffect(()=>{
-      setList([...tasks])
-      
-  },[JSON.stringify(tasks)])
-
-   console.log([tasks])
-   console.log([list]);
-   console.log([tasksCopy])
+      setList([...tasks])      
+  },[JSON.stringify(tasks)])  
 
   const handleDelete = (e,t) => {
-      setList([...tasksCopy.filter(i => tasksCopy.indexOf(i) != e)])
-      update([...current.filter(i => i.text != t)])
+      setList([...tasksCopy.filter(i => tasksCopy.indexOf(i) !== e)])
+      update([...current.filter(i => i.text !== t)])
   }
 
   return (

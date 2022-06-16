@@ -4,14 +4,12 @@ function CategoryFilter({ categories, filteredTask, task }) {
 
   const [selected, setSelected] = useState("All")
 
-   let filtered = (selected === "All") ? task : task.filter(e => e.category === selected)
+  let filtered = (selected === "All") ? task : task.filter(e => e.category === selected)
 
-   //console.log(filtered)
-   
 
    useEffect(() =>{
      filteredTask(filtered)
-   },[selected])     
+   },[selected, task])     
    
 
   return (
@@ -20,11 +18,12 @@ function CategoryFilter({ categories, filteredTask, task }) {
        {
         categories.map(category => {
           return ( 
-          <button className={category === selected ? "selected" : ""} 
-                        key={categories.indexOf(category)} 
-                    onClick={() => {setSelected(category)}} >
-          {category}
-          </button>)
+            <button className={category === selected ? "selected" : ""} 
+                          key={categories.indexOf(category)} 
+                      onClick={() => {setSelected(category)}} >
+            {category}
+            </button>
+          )
         })
        }        
     </div>
