@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
 
-function CategoryFilter({ categories, filteredTask, task }) {
+function CategoryFilter({ categories, task, filter }) {
 
   const [selected, setSelected] = useState("All")
 
-  let filtered = (selected === "All") ? task : task.filter(e => e.category === selected)
-
-
    useEffect(() =>{
-     filteredTask(filtered)
+    filter(selected)
    },[selected, task])     
    
 
@@ -16,10 +13,10 @@ function CategoryFilter({ categories, filteredTask, task }) {
     <div className="categories">
       <h5>Category filters</h5>
        {
-        categories.map(category => {
+        categories.map((category, index) => {
           return ( 
             <button className={category === selected ? "selected" : ""} 
-                          key={categories.indexOf(category)} 
+                          key={index} 
                       onClick={() => {setSelected(category)}} >
             {category}
             </button>

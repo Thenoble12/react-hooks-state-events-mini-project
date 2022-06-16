@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 function NewTaskForm({ categories, onTaskFormSubmit, current }) {
 
@@ -9,8 +9,7 @@ function NewTaskForm({ categories, onTaskFormSubmit, current }) {
     e.preventDefault();   
     onTaskFormSubmit([...current, {text, category}]);
     setCategory("none");
-    setText("");   
-    console.log(e)
+    setText("");  
   } 
 
   return (
@@ -22,7 +21,9 @@ function NewTaskForm({ categories, onTaskFormSubmit, current }) {
       <label>
         Category
         <select name="category" onChange={(e)=>{setCategory(e.target.value)}} value={category} >
-           { categories.map((category) => (category!=="All") ? (<option>{category}</option>) : <option value="none" selected disabled hidden>Select Catagory</option>) }
+           { categories.map((category) => (category!=="All") 
+                                          ? (<option>{category}</option>) 
+                                          : <option value="none" selected disabled hidden>Select Catagory</option>) }
         </select>
       </label>
       <input type="submit" value="Add task" />

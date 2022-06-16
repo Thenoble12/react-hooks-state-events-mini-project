@@ -1,27 +1,19 @@
 import React, { useEffect, useState } from "react";
 import Task from "./Task";
 
-function TaskList({ tasks, current, update }) {
-  
-  const [list, setList] = useState([])
-  let tasksCopy = [...list];
+function TaskList({ current, update }) {
 
-  useEffect(()=>{
-      setList([...tasks])      
-  },[JSON.stringify(tasks)])  
-
-  const handleDelete = (e,t) => {
-      setList([...tasksCopy.filter(i => tasksCopy.indexOf(i) !== e)])
-      update([...current.filter(i => i.text !== t)])
+  const handleDelete = (e) => {
+      update([...current.filter(i => current.indexOf(i) !== e)])
   }
-
+  
   return (
     <div className="tasks">      
-          { tasksCopy.map((task) => {
+          { current.map((task, index) => {
               return <Task task={task.text} 
                            categories={task.category} 
-                           key={tasksCopy.indexOf(task)} 
-                           id={tasksCopy.indexOf(task)} 
+                           key={index} 
+                           id={index} 
                            handleDelete={handleDelete} />
           })}      
     </div>

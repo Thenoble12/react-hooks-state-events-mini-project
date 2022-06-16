@@ -10,17 +10,17 @@ console.log({ CATEGORIES, TASKS });
 
 function App() {
 
-  const [filteredTask, setfilteredTask] = useState([])
+  const [filter, setFilter] = useState([])
   const [current, setCurrent] = useState(TASKS) 
-  
-  console.log(current)  
 
+  let filtered = (filter === "All") ? current : current.filter(e => e.category === filter)     
+  
   return (
     <div className="App">      
       <h2>My tasks</h2>
-      <CategoryFilter categories={CATEGORIES} filteredTask={setfilteredTask} task={current} />
+      <CategoryFilter categories={CATEGORIES} task={current} filter={setFilter}  />
       <NewTaskForm categories={CATEGORIES} onTaskFormSubmit={setCurrent} current={current} />
-      <TaskList tasks={filteredTask} update={setCurrent} current={current} />
+      <TaskList  update={setCurrent} current={filtered} />
     </div>
   );
 }
